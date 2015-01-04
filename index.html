@@ -1,0 +1,31 @@
+<!--
+# Example of Hierarchical listing of categories by using recursive template method in AngularJS
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="js/list.js"></script>
+</head>
+
+<body >
+<div ng-app="app" ng-controller='AppCtrl'>
+    
+    <!-- Script to load child category and with parent category name -->
+    <script type="text/ng-template" id="categoryTree">
+        {{ category.title }}
+        <ul ng-if="category.categories">
+            <li ng-repeat="category in category.categories" ng-include="'categoryTree'">           
+            </li>
+        </ul>
+    </script>
+
+    <!-- Initiate category structure -->
+    <ul>
+        <li ng-repeat="category in categories" ng-include="'categoryTree'"></li>
+    </ul>    
+</div>
+</body>
+
+</html>
